@@ -17,25 +17,27 @@ search: true
 ---
 
 # Introduction
-
 Welcome to Integra Api! The main goal for this api is to ease the communication between the terminal and the POS.
 It is supposed to be available to both Java and .NET.
 
 # Complete Use Case
 ```java
 CommunicationContext context = CommunicationContext.createClientSocket(Datalink.DATALINK, "192.168.61.93", 1234);
-Integra integra = new Integra(context);
+
+IStatusUpdateHandler statusHandler = new IStatusUpdateHandler() {
+    @Override
+    public void onStatusUpdate(StatusUpdate update) {
+        System.out.println(update);
+    }
+}
+
+Integra integra = new Integra(context, statusHandler);
 
 HashMap<String, String> options = new HashMap<>();
 options.put(Request.AMOUNT, "12.1");
 Request saleRequest = ResquestFactory.getInstance().createRequest(SettlementType.SALE, options);
 
-IMessageHandler handler = new IMessageHandler() {
-  @Override
-  public void onStatusUpdate(StatusUpdate update) {
-    System.out.println(update);
-  }
-  
+IResponseHandler handler = new IResponseHandler() {
   @Override
   public void onResponse(Response response) {
     System.out.println(response);
@@ -47,7 +49,7 @@ integra.sendRequest(request, handler);
 
 ```csharp
 CommunicationContext context = CommunicationContext.CreateClientSocket(Datalink.DATALINK, "192.168.61.93", 1234);
-Integra integra = new Integra(context);
+Integra integra = new Integra(context, statusHandler);
 
 Dictionary<string, string> options = new Dictionary<>();
 options.Add(Request.AMOUNT, "12.1");
