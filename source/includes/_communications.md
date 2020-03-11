@@ -5,10 +5,10 @@ Each method is for each type of channel.
 
 ## Client Socket
 ```java
-CommunicationContext context = CommunicationContext.createClientHTTP(Datalink link, String ip, int port)
+CommunicationContext context = CommunicationContext.createClientSocket(Datalink link, String ip, int port)
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createClientHTTP(Datalink link, string ip, int port)
+CommunicationContext context = CommunicationContext.createClientSocket(Datalink link, string ip, int port)
 ```
 
 Simple connection with sockets, the POS being the client.
