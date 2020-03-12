@@ -162,6 +162,15 @@ ZoneId | AN | For future use. An identification of the geographical zone (in hot
 Options in bold are not optional.
 </aside>
 
+<select id="request_select">
+  <option value="sale">Sale</option>
+  <option value="refund">Refund</option>
+  <option value="completion">Completion</option>
+  <option value="sale_reversal">Sale Reversal</option>
+  <option value="refund_reversal">Refund Reversal</option>
+  <option value="completion_reversal">Completion Reversal</option>
+</select>
+
 Main Type | Request/Response | Options
 --------- | ---------------- | ---------
 All  | Both | <ul><li>**SequenceNumber**</li><li>RequesterTransRefNum</li><li>RequesterStationId</li><li>RequesterLocationId</li><li>ValidationId</li><li>ValidationCode</li></ul>

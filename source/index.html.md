@@ -32,6 +32,7 @@ IStatusUpdateHandler statusHandler = new IStatusUpdateHandler() {
 }
 
 Integra integra = new Integra(context, statusHandler);
+integra.connect();
 
 HashMap<String, String> options = new HashMap<>();
 options.put(Request.AMOUNT, "12.1");
@@ -50,6 +51,7 @@ integra.sendRequest(request, handler);
 ```csharp
 CommunicationContext context = CommunicationContext.CreateClientSocket(Datalink.DATALINK, "192.168.61.93", 1234);
 Integra integra = new Integra(context, statusHandler);
+integra.connect();
 
 Dictionary<string, string> options = new Dictionary<>();
 options.Add(Request.AMOUNT, "12.1");
