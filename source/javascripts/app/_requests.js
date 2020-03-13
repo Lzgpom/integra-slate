@@ -1,11 +1,14 @@
 //= require ../lib/_jquery
-;(function () {
-  'use strict';
+'use strict';
 
-  $("#request_select").change(function () {
-    let id = $(this).find("option:selected").attr("id");
+function request_select() {
+  let value = document.getElementById("request_select").value;
 
-    console.log(id);
-  });
+  let request_options = document.getElementsByClassName("request_option");
+  for (let i = 0; i < request_options.length; i++) {
+    request_options[i].style.display = "none";
+  }
 
-})();
+  document.getElementById(value).style.display = "block";
+}
+
