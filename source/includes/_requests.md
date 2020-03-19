@@ -12,10 +12,10 @@ Request request = RequestFactory.getInstance().createRequest(OtherType.CANCEL, n
 ```
 In order to create a request there's a factory for this purpose.
 
-Parameter | Description
---------- | -----------
-type | The type of the request.
-options | An HashMap with the options of the request.
+Parameter| Type | Description
+---------| ---- | -----------
+type | RequestType | The type of the request.
+options | HashMap<String,String> | An HashMap with the options of the request.
 
 
 <aside class="notice">
@@ -28,27 +28,27 @@ The Integra Api provides the following request types:
 Main Type | Type | Description
 ------------| ---------- | -------
 Auth | PRE_AUTH | Performs an authorization for an amount not necessarily equal to the final transaction amount, using EMV terminal. Card (EMV) data read by terminal. Pin entry.
-Auth | TOP_UP |
-Auth | PRE_AUTH_REVERSAL | 
-Auth | TOP_UP_REVERSAL | 
+Auth | TOP_UP | Additional or supplemental authorization, done after an initial one. The same requester transaction reference number or token has to be used than for the initial one. The actual total amount has to be provided in the request. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorization and the EMV data. This request might go for an online approval.
+Auth | PRE_AUTH_REVERSAL | Reversal of a previous PreAuth request. The same amount has to be used than for the PreAuth one. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorization and the EMV data. This request might go for an online approval, depending on the bank interface. 
+Auth | TOP_UP_REVERSAL | Reversal of a previous TopUp request. The amount and requester transaction reference number has to be the same than in the TopUp request. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorizationand the EMV data. Then it does a reversal, by using the authorization code received at that time. This request might go for an online approval, depending on the bank interface
 Settlement | SALE | Sale using EMV terminal. EMV data read by terminal. Pin entry.
 Settlement | REFUND | Refund using EMV terminal. EMV data read by terminal. Pin entry optional. 
 Settlement | COMPLETION | Terminal used for completion, e.g. to provide confirmation or printout. 
-Settlement | SALE_REVERSAL | 
-Settlement | REFUND_REVERSAL | 
-Settlement | COMPLETION_REVERSAL | 
+Settlement | SALE_REVERSAL | Reversal of a sale. No PIN entry required. The requester transaction reference number has to be the same than in the Sale request.
+Settlement | REFUND_REVERSAL | Reversal of a refund. No PIN entry required. The requester transaction reference number has to be the same than in the Refund request.
+Settlement | COMPLETION_REVERSAL | Reversal of a completion. No PIN entry required. The requester transaction reference number has to be the same than in the Completion request.
 Card | CARD_CHECK | Validate the card data received in the request.
 Card | CARD_CHECK_VALIDATE | Validate the card read by an EMV terminal. Card might stay in the terminal after reading.
 Card | CARD_CHECK_REMOVE | Validate the card read by an EMV terminal. Card is removed from the terminal after reading. 
-Terminal Status | INFO | 
-Terminal Control | TERMINAL_ACTIVATE | 
-Terminal Control | TERMINAL_DEACTIVATE | 
-Terminal Control | TERMINAL_LANGUAGE | 
-Terminal Control | TERMINAL_SLEEP | 
-Terminal Control | TERMINAL_PRINTER_AVAILABLE |
-Terminal Control | TERMINAL_PRINTER_NOT_AVAILABLE |
-Terminal Control | TERMINAL_INITIALIZE |
-Terminal Control | TERMINAL_SHIFT_REOPEN |
+Terminal Status | INFO | Can provide specific terminal information, such as diagnostic data, or initial receipt data.
+Terminal Control | TERMINAL_ACTIVATE | This request can be used to activate an EMV terminal. Activate will place the terminal in a "technical" operational stateso it can be used by the integrator to execute operations. This command is only required in case the integrator has formerly deactivated the terminal.
+Terminal Control | TERMINAL_DEACTIVATE | This request can be used to deactivate an EMV terminal. Deactivate will place the terminal into a "technical"non-operational stateso it can NOT be used by the integrator to execute operations, and deactivates the reader and pinpad. This command is only required in case the integrator explicitly wants to deactivate a terminal to be sure no operations can be done.
+Terminal Control | TERMINAL_LANGUAGE | This request can be used to change the language of the terminal.
+Terminal Control | TERMINAL_SLEEP | This request can be used to make terminal to sleep.
+Terminal Control | TERMINAL_PRINTER_AVAILABLE | This request can be used to set the printer to available.
+Terminal Control | TERMINAL_PRINTER_NOT_AVAILABLE | This request can be used to set the printer to nou available.
+Terminal Control | TERMINAL_INITIALIZE | This message can be send to initialize an EMV terminal with some parameters from the request, and to trigger a configuration and software download.
+Terminal Control | TERMINAL_SHIFT_REOPEN | This message is like the SHIFT_CLOSE_OPEN.
 Other | CANCEL | Cancel a message sent before. 
 Other | CHECK_STATUS | Status request. Returns if the application is operational or not.
 Other | SHIFT_OPEN | Open the reconciliation period. ShiftClose 
@@ -56,7 +56,11 @@ Other | SHIFT_CLOSE | Close the reconciliation period.
 Other | SHIFT_CLOSE_OPEN | Close then open the reconciliation period.
 
 ## Options
-The options that can be added to requests are:
+The options that can be added to requests are:  
+**AN** - Alpha Numeric  
+**N** - Numeric  
+**Y/N** - Yes or No
+
 
 Option | Type | Description
 --------- | ----------- | ----------

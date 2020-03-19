@@ -18,7 +18,8 @@ search: true
 
 # Introduction
 Welcome to Integra Api! The main goal for this api is to ease the communication between the terminal and the POS.
-It is supposed to be available to both Java and .NET.
+It is supposed to be available to both Java and .NET.  
+This API is structured like the explanation of things works in the left and code snippets in the right.
 
 # Complete Use Case
 ```java
@@ -63,7 +64,40 @@ integra.SendRequest(request, handler);
 ```
 
 In order to use this api, it is necessary to create an instance of Integra, for that is also necessary
-a CommunicationContext. The way to create a CommunicationContext is explained after.
-Later you can use the instance of Integra to send requests. The sending method requires a IMessageHandler instance,
+a [CommunicationContext](#communications). The way to create a CommunicationContext is explained after.
+Later you can use the instance of Integra to send [requests](#requests). The sending method requires a IMessageHandler instance,
 where it receives all the status updates and the response.
 
+# Integra
+
+This is the starting point for this API, basically where messages are sent and received.
+
+```java
+Integra integra = new Integra(context, handler);
+```
+
+```csharp
+Integra integra = new Integra(context, handler);
+```
+
+Creates an instance of Integra. It needs a [communication context](#communications) and an handler for status updates.
+
+Parameter| Type | Description
+---------| ---- | -----------
+context | CommunicationContext | The communication context.
+handler | IStatusUpdateHandler | A callback function where the status updates are handled.
+
+```java
+integra.sendRequest(request, handler);
+```
+
+```csharp
+integra.SendRequest(request, handler);
+```
+
+Sends a request to the terminal. It needs a [request](#requests) and an handler for the response.
+
+Parameter| Type | Description
+---------| ---- | -----------
+request | Request | The request to send.
+handler | IResponseHandler | A callback function where the response is handled.
