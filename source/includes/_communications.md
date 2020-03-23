@@ -174,7 +174,3 @@ dataBits | Integer | The key store password.
 parity | Parity | The partity can be: NONE, ODD, EVEN, MARK, SPACE
 stopBits | Integer | Can only be 1 or 2.
 HandShake | HandShake | There are multiples types of Handshakes...
-
-<aside class="warning">
-Most likely the parameters or the description itself might not be correct.
-</aside>
