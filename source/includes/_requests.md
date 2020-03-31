@@ -1,5 +1,5 @@
-# Requests
-The POS and the terminal communicate by requests in the 3cXML protocol, 3cXML abreviated and others. 
+# Request
+The POS and the terminal communicate by requests in the 3cXML protocol, 3cXML abbreviated and 3cXMLPay@Table and 3cXMLPay@Table abbreviated. 
 A request is made up by its type and options.
 
 ## Create Request
@@ -20,7 +20,7 @@ In order to create a request there's a factory for this purpose.
 
 Parameter| Type | Description
 ---------| ---- | -----------
-type | [RequestType](#types) | The type of the request.
+type | [RequestType](#requesttype) | The type of the request.
 options | HashMap<String,String> | An HashMap with the options of the request.
 
 
@@ -28,11 +28,10 @@ options | HashMap<String,String> | An HashMap with the options of the request.
 Depending on the type, the request might have some mandatory options.
 </aside>
 
-## Types
-There is a main type of request and a subtype. A main type is like terminal control that controls the terminal. The subtype is more specifically what the
-request is really going to do, like Terminal Activate.  
+## RequestType
+There is a "main type" which is the category of the type. The subtype is action of the request.
 
-This are the type of that Intgra API has:
+This are the type of that Integra API has:
 
 Main Type | Type | Description
 ------------| ---------- | -------
@@ -65,10 +64,12 @@ Other | SHIFT_CLOSE | Close the reconciliation period.
 Other | SHIFT_CLOSE_OPEN | Close then open the reconciliation period.
 
 ## Options
+Options is information that is on a request or a response.  
 The options that can be added to requests are:  
 **AN** - Alpha Numeric  
+**A** - Alpha  
 **N** - Numeric  
-**Y/N** - Yes or No
+**Y/N** - Boolean
 
 ### Options per type
 

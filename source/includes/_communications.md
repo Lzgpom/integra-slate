@@ -1,4 +1,4 @@
-# Communications
+# CommunicationContext
 It is needed a communication context to send and receives messages with the terminal.
 In any connection there's always a channel and a datalink. In order to create a communication context there are several creating methods to do so.
 Each method is for each type of channel.
@@ -11,14 +11,18 @@ CommunicationContext context = new CommunicationContext(channel, datalink);
 CommunicationContext context = new CommunicationContext(channel, datalink);
 ```
 
+### Constructor
 Creates an instance of CommunicationContext. This is used to send the messages and receive.
 
 Parameter| Type | Description
 ---------| ---- | -----------
 channel | IChannel | The channel of the communication.
-datalink | Datalink | The datalink of the communication.
+datalink | IDatalink | The datalink of the communication.
 
-## Client Socket
+# IChannel
+The is a channel where messages are sent and received.
+
+## ChannelClientSocket
 ```java
 IChannel channel = new ChannelClientSocket(ip, port);
 ```
@@ -33,7 +37,7 @@ Parameter| Type | Description
 ip | String | A string with an ip.
 port | Integer | The port number.
 
-## Client Socket SSL
+## ChannelClientSocketSSL
 ```java
 IChannel channel = new ChannelClientSocketSSL(ip, port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols);
 ```
@@ -53,7 +57,7 @@ keyPassword | String | The key password.
 ciphers | String[] | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
 protocols | String[] | The protocol that can be used. ex: "SSLv3"
 
-## Client HTTP
+## ChannelClientHTTP
 ```java
 IChannel channel = new ChannelClientHTTP(host, port);
 ```
@@ -68,7 +72,7 @@ Parameter| Type | Description
 host | String | A string with the host name, it can also be an ip.
 port | Integer | The port number.
 
-## Client HTTPS
+## ChannelClientHTTPS
 ```java
 IChannel channel = new ChannelClientHTTPS(host, port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols);
 ```
@@ -80,7 +84,6 @@ Connection that now uses HTTPS for added security. The POS is the client.
 
 Parameter| Type | Description
 ---------| ---- | -----------
-link | The type of the datalink.
 host | String | A string with the host name, it can also be an ip.
 port | String | The port number.
 keyStoreFile | String | Location to the key store file.
@@ -89,7 +92,7 @@ keyPassword | String | The key password.
 ciphers | String[] | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
 protocols | String[] | The protocol that can be used. ex: "SSLv3"
 
-## Server Socket
+## ChannelServerSocket
 ```java
 IChannel channel = new ChannelServerSocket(port);
 ```
@@ -103,7 +106,7 @@ Parameter| Type | Description
 ---------| ---- | -----------
 port | Integer | The port number.
 
-## Server Socket SSL
+## ChannelServerSocketSSL
 ```java
 IChannel channel = new ChannelServerSocketSSL(port, keyStoreFile, keyStorePassword, Password, ciphers, protocols);
 ```
@@ -122,7 +125,7 @@ keyPassword | String | The key password.
 ciphers | String[] | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
 protocols | String[] | The protocol that can be used. ex: "SSLv3"
 
-## Server HTTP
+## ChannelServerHTTP
 ```java
 IChannel channel = new ChannelServerHTTP(int port);
 ```
@@ -136,7 +139,7 @@ Parameter| Type | Description
 ---------| ---- | -----------
 port | Integer | The port number.
 
-## Server HTTPS
+## ChannelServerHTTPS
 ```java
 IChannel channel = new ChannelServerHTTPS(port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols);
 ```
@@ -148,7 +151,6 @@ Connection that now uses HTTPS for added security. The POS is the server.
 
 Parameter| Type | Description
 ---------| ---- | -----------
-link | The type of the datalink.
 port | Integer | The port number.
 keyStoreFile | String | Location to the key store file.
 keyStorePassword | String | The key store password.
@@ -156,7 +158,7 @@ keyPassword | String | The key password.
 ciphers | String[] | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
 protocols | String[] | The protocol that can be used. ex: "SSLv3"
 
-## Com Port
+## ChannelComPort
 ```java
 IChannel channel = new ChannelComPort(comPort, baudRate, dataBits, parity, stopBits, handshake);
 ```
@@ -174,3 +176,14 @@ dataBits | Integer | The key store password.
 parity | Parity | The partity can be: NONE, ODD, EVEN, MARK, SPACE
 stopBits | Integer | Can only be 1 or 2.
 HandShake | HandShake | There are multiples types of Handshakes...
+
+# IDatalink
+There are this types of datalink:  
+**- Datalink**  
+**- DatalinkPayAtTable**  
+**- DatalinkStxEtxAckLrc**  
+**- DatalinkStxEtxCrcSendAck**  
+**- DatalinkStxEtxCrcSendAckSeqCounter**  
+
+## Constructor
+All constructors are do not have any parameter.

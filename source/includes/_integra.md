@@ -12,11 +12,11 @@ Integra integra = new Integra(context, handler);
 Integra integra = new Integra(context, handler);
 ```
 
-Creates an instance of Integra. It needs a [communication context](#communications) and an handler for status updates.
+Creates an instance of Integra. It needs a [communication context](#communicationcontext) and an [handler for status updates](#istatusupdatehandler).
 
 Parameter| Type | Description
 ---------| ---- | -----------
-context | [CommunicationContext](#communications) | The communication context.
+context | [CommunicationContext](#communicationcontext) | The communication context.
 handler | [IStatusUpdateHandler](#istatusupdatehandler) | A callback function where the status updates are handled.
 
 ### Send Request Method
@@ -29,12 +29,22 @@ integra.sendRequest(request, handler);
 integra.SendRequest(request, handler);
 ```
 
-Sends a request to the terminal. It needs a [request](#requests) and an handler for the response.
+Sends a request to the terminal. It needs a [request](#request) and an handler for the response.
 
 Parameter| Type | Description
 ---------| ---- | -----------
-request | [Request](#requests) | The request to send.
+request | [Request](#request) | The request to send.
 handler | [IResponseHandler](#iresponsehandler) | A callback function where the response is handled.
+
+
+### Connect Method
+```java
+integra.connect();
+```
+```csharp
+integra.connect();
+```
+Starts the connection between the POS and the terminal.
 
 # Handlers
 ## IStatusUpdateHandler
@@ -47,6 +57,10 @@ void onStatusUpdate(StatusUpdate status);
 
 This interface contains a method to be called back on a Status update.
 
+Parameter| Type | Description
+---------| ---- | -----------
+status | [StatusUpdate](#statusupdate) | The status update received.
+
 ## IResponseHandler
 ```java
 void onResponse(Response response);
@@ -56,3 +70,7 @@ void onResponse(Response response);
 ```
 
 This interface contains a method to be called back on when a response to the request is received.
+
+Parameter| Type | Description
+---------| ---- | -----------
+response | [Response](#response) | The response received.

@@ -1,7 +1,8 @@
 # Complete Use Case
 ```java
 IChannel channel = new ChannelClientSocket("192.168.1.11", 1234);
-CommunicationContext context = new CommunicationContext(channel, Datalink.DATALINK);
+IDatalink datalink = new Datalink();
+CommunicationContext context = new CommunicationContext(channel, datalink);
 
 IStatusUpdateHandler statusHandler = new IStatusUpdateHandler() {
     @Override
@@ -29,7 +30,8 @@ integra.sendRequest(request, handler);
 
 ```csharp
 IChannel channel = new ChannelClientSocket("192.168.1.11", 1234);
-CommunicationContext context = new CommunicationContext(channel, Datalink.DATALINK);
+IDatalink datalink = new Datalink();
+CommunicationContext context = new CommunicationContext(channel, datalink);
 Integra integra = new Integra(context, statusHandler);
 integra.connect();
 
@@ -43,8 +45,8 @@ integra.SendRequest(request, handler);
 ```
 
 In order to use this api, it is necessary to create an instance of [Integra](#integra), for that is also necessary
-a [CommunicationContext](#communications)
-Later you can use the instance of Integra to send [requests](#requests). The sending method requires a IStatusUpdateHandler and IResponseHandler instance,
-where it receives all the status updates and the response.  
+a [CommunicationContext](#communicationcontext).
+Later you can use the instance of Integra to send [requests](#request). The sending method requires a [IStatusUpdateHandler](#istatusupdatehandler) 
+and [IResponseHandler](#iresponsehandler) instance, where it receives all the status updates and the response.  
   
 **Note**: a code example is on the right.
