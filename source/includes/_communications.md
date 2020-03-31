@@ -3,170 +3,174 @@ It is needed a communication context to send and receives messages with the term
 In any connection there's always a channel and a datalink. In order to create a communication context there are several creating methods to do so.
 Each method is for each type of channel.
 
+```java
+CommunicationContext context = new CommunicationContext(channel, datalink);
+```
+
+```csharp
+CommunicationContext context = new CommunicationContext(channel, datalink);
+```
+
+Creates an instance of CommunicationContext. This is used to send the messages and receive.
+
+Parameter| Type | Description
+---------| ---- | -----------
+channel | IChannel | The channel of the communication.
+datalink | Datalink | The datalink of the communication.
+
 ## Client Socket
 ```java
-CommunicationContext context = CommunicationContext.createClientSocket(Datalink link, String ip, int port)
+IChannel channel = new ChannelClientSocket(ip, port);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createClientSocket(Datalink link, string ip, int port)
+IChannel channel = new ChannelClientSocket(ip, port);
 ```
 
 Simple connection with sockets, the POS being the client.
 
-Parameter | Description
---------- | -----------
-link | The type of the datalink.
-ip | A string with an ip.
-port | The port number.
+Parameter| Type | Description
+---------| ---- | -----------
+ip | String | A string with an ip.
+port | Integer | The port number.
 
 ## Client Socket SSL
 ```java
-CommunicationContext context = CommunicationContext.createClientSocketSSL(Datalink link, String ip, int port, String keyStoreFile, String keyStorePassword, String keyPassword, String[] ciphers, String[] protocols)
+IChannel channel = new ChannelClientSocketSSL(ip, port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createClientSocketSSL(Datalink link, string ip, int port, string keyStoreFile, string keyStorePassword, string keyPassword, string[] ciphers, string[] protocols)
+IChannel channel = new ChannelClientSocketSSL(ip, port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols):
 ```
 
 Connection still with sockets, with added security. The POS is the client.
 
-Parameter | Description
---------- | -----------
-link | The type of the datalink.
-ip | A string with an ip.
-port | The port number.
-keyStoreFile | Location to the key store file.
-keyStorePassword | The key store password.
-keyPassword | The key password.
-ciphers | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
-protocols | The protocol that can be used. ex: "SSLv3"
+Parameter| Type | Description
+---------| ---- | -----------
+ip | String | A string with an ip.
+port | Integer | The port number.
+keyStoreFile | String | Location to the key store file.
+keyStorePassword | String | The key store password.
+keyPassword | String | The key password.
+ciphers | String[] | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
+protocols | String[] | The protocol that can be used. ex: "SSLv3"
 
 ## Client HTTP
 ```java
-CommunicationContext context = CommunicationContext.createClientHTTP(Datalink link, String host, int port)
+IChannel channel = new ChannelClientHTTP(host, port);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createClientHTTP(Datalink link, string host, int port)
+IChannel channel = new ChannelClientHTTP(host, port);
 ```
 
 Connection that uses HTTP to communicate, being the POS the client.
 
-Parameter | Description
---------- | -----------
-link | The type of the datalink.
-host | A string with the host name, it can also be an ip.
-port | The port number.
+Parameter| Type | Description
+---------| ---- | -----------
+host | String | A string with the host name, it can also be an ip.
+port | Integer | The port number.
 
 ## Client HTTPS
 ```java
-CommunicationContext context = CommunicationContext.createClientHTTPS(Datalink link, String host, int port, String keyStoreFile, String keyStorePassword, String keyPassword, String[] ciphers, String[] protocols)
+IChannel channel = new ChannelClientHTTPS(host, port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createClientHTTPS(Datalink link, string host, int port, string keyStoreFile, string keyStorePassword, string keyPassword, string[] ciphers, string[] protocols)
+IChannel channel = new ChannelClientHTTPS(host, port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols);
 ```
 
 Connection that now uses HTTPS for added security. The POS is the client.
 
-Parameter | Description
---------- | -----------
+Parameter| Type | Description
+---------| ---- | -----------
 link | The type of the datalink.
-host | A string with the host name, it can also be an ip.
-port | The port number.
-keyStoreFile | Location to the key store file.
-keyStorePassword | The key store password.
-keyPassword | The key password.
-ciphers | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
-protocols | The protocol that can be used. ex: "SSLv3"
+host | String | A string with the host name, it can also be an ip.
+port | String | The port number.
+keyStoreFile | String | Location to the key store file.
+keyStorePassword | String | The key store password.
+keyPassword | String | The key password.
+ciphers | String[] | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
+protocols | String[] | The protocol that can be used. ex: "SSLv3"
 
 ## Server Socket
 ```java
-CommunicationContext context = CommunicationContext.createServerSocket(Datalink link, int port);
+IChannel channel = new ChannelServerSocket(port);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createServerSocket(Datalink link, int port);
+IChannel channel = new ChannelServerSocket(port);
 ```
 
 Simple connection using sockets. Now the POS is the server.
 
-Parameter | Description
---------- | -----------
-link | The type of the datalink.
-port | The port number.
+Parameter| Type | Description
+---------| ---- | -----------
+port | Integer | The port number.
 
 ## Server Socket SSL
 ```java
-CommunicationContext context = CommunicationContext.createServerSocketSSL(Datalink link, int port, String keyStoreFile, String keyStorePassword, String keyPassword, String[] ciphers, String[] protocols)
+IChannel channel = new ChannelServerSocketSSL(port, keyStoreFile, keyStorePassword, Password, ciphers, protocols);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createServerSocketSSL(Datalink link, int port, string keyStoreFile, string keyStorePassword, string keyPassword, string[] ciphers, string[] protocols)
+IChannel channel = new ChannelServerSocketSSL(port, keyStoreFile, keyStorePassword, Password, ciphers, protocols);
 ```
 
 Connection still with sockets, with added security. The POS is the server.
 
-Parameter | Description
---------- | -----------
-link | The type of the datalink.
-port | The port number.
-keyStoreFile | Location to the key store file.
-keyStorePassword | The key store password.
-keyPassword | The key password.
-ciphers | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
-protocols | The protocol that can be used. ex: "SSLv3"
+Parameter| Type | Description
+---------| ---- | -----------
+port | Integer | The port number.
+keyStoreFile | String | Location to the key store file.
+keyStorePassword | String | The key store password.
+keyPassword | String | The key password.
+ciphers | String[] | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
+protocols | String[] | The protocol that can be used. ex: "SSLv3"
 
 ## Server HTTP
 ```java
-CommunicationContext context = CommunicationContext.createServerHTTP(Datalink link, int port)
+IChannel channel = new ChannelServerHTTP(int port);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createServerHTTP(Datalink link, int port)
+IChannel channel = new ChannelServerHTTP(int port);
 ```
 
 Connection that uses HTTP to communicate, being the POS the server.
 
-Parameter | Description
---------- | -----------
-link | The type of the datalink.
-port | The port number.
+Parameter| Type | Description
+---------| ---- | -----------
+port | Integer | The port number.
 
 ## Server HTTPS
 ```java
-CommunicationContext context = CommunicationContext.createServerHTTPS(Datalink link, int port, String keyStoreFile, String keyStorePassword, String keyPassword, String[] ciphers, String[] protocols)
+IChannel channel = new ChannelServerHTTPS(port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createServerHTTPS(Datalink link, int port, string keyStoreFile, string keyStorePassword, string keyPassword, string[] ciphers, string[] protocols)
+IChannel channel = new ChannelServerHTTPS(port, keyStoreFile, keyStorePassword, keyPassword, ciphers, protocols);
 ```
 
 Connection that now uses HTTPS for added security. The POS is the server.
 
-Parameter | Description
---------- | -----------
+Parameter| Type | Description
+---------| ---- | -----------
 link | The type of the datalink.
-port | The port number.
-keyStoreFile | Location to the key store file.
-keyStorePassword | The key store password.
-keyPassword | The key password.
-ciphers | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
-protocols | The protocol that can be used. ex: "SSLv3"
+port | Integer | The port number.
+keyStoreFile | String | Location to the key store file.
+keyStorePassword | String | The key store password.
+keyPassword | String | The key password.
+ciphers | String[] | The ciphers that can be used. ex: "ssl_rsa_with_3des_ede_cbc_sha"
+protocols | String[] | The protocol that can be used. ex: "SSLv3"
 
 ## Com Port
 ```java
-CommunicationContext context = CommunicationContext.createComPort(Datalink link, String comPort, int baudRate, int dataBits, Parity parity, int stopBits, HandShake handshake)
+IChannel channel = new ChannelComPort(comPort, baudRate, dataBits, parity, stopBits, handshake);
 ```
 ```csharp
-CommunicationContext context = CommunicationContext.createComPort(Datalink link, string comPort, int baudRate, int dataBits, Parity parity, int stopBits, HandShake handshake)
+IChannel channel = new ChannelComPort(comPort, baudRate, dataBits, parity, stopBits, handshake);
 ```
 
 A different type of connection that I don't really know how to describe...
 
-Parameter | Description
---------- | -----------
-link | The type of the datalink.
-comPort | An id of the com port.
-baudRate | Rate that ...
-dataBits | The key store password.
-parity | The partity can be: NONE, ODD, EVEN, MARK, SPACE
-stopBits | Can only be 1 or 2.
-HandShake | There are multiples types of Handshakes...
-
-<aside class="warning">
-Most likely the parameters or the description itself might not be correct.
-</aside>
+Parameter| Type | Description
+---------| ---- | -----------
+comPort | String | An id of the com port.
+baudRate | Integer | Rate that ...
+dataBits | Integer | The key store password.
+parity | Parity | The partity can be: NONE, ODD, EVEN, MARK, SPACE
+stopBits | Integer | Can only be 1 or 2.
+HandShake | HandShake | There are multiples types of Handshakes...
