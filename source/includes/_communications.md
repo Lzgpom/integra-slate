@@ -11,7 +11,7 @@ CommunicationContext context = new CommunicationContext(channel, datalink);
 CommunicationContext context = new CommunicationContext(channel, datalink);
 ```
 
-### Constructor
+## Constructor
 Creates an instance of CommunicationContext. This is used to send the messages and receive.
 
 Parameter| Type | Description

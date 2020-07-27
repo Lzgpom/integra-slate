@@ -50,3 +50,5 @@ Later you can use the instance of Integra to send [requests](#request). The send
 and [IResponseHandler](#iresponsehandler) instance, where it receives all the status updates and the response.  
   
 **Note**: a code example is on the right.
+
+![images/example.svg](images/example.svg)

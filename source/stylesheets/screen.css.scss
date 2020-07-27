@@ -123,6 +123,7 @@ html, body {
     transition-duration: 180ms;
     transition-timing-function: ease-in-out;
     background: $nav-subitem-bg;
+    border-bottom: 1px dashed $nav-footer-border-color;
     &.visible {
       height: 30%;
       margin-bottom: 1em;

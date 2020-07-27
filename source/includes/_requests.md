@@ -1,6 +1,50 @@
 # Request
-The POS and the terminal communicate by requests in the 3cXML protocol, 3cXML abbreviated and 3cXMLPay@Table and 3cXMLPay@Table abbreviated. 
-A request is made up by its type and options.
+The POS and the terminal communicate by requests in the 3cXML protocol, 3cXML abbreviated, 3cXMLPay@Table and 3cXMLPay@Table abbreviated. 
+A request is made up by its [type](#requesttype)  and options.
+
+## RequestFactory
+This allows for the creation of requests more easily.
+
+### Methods
+### getInstance
+```java
+static RequestFactory getInstance()
+```
+```csharp
+static RequestFactory getInstance()
+```
+
+Obtains an instance of the request factory.
+
+### createRequest
+
+```java
+Request createRequest(RequestType type, HashMap<String, String> options)
+```
+```csharp
+Request CreateRequest(RequestType type, Dictionary<String, String> options)
+```
+
+Creates a Request given its types and options.
+
+Parameter| Type | Description
+---------| ---- | -----------
+type | [RequestType](#requesttype) | The type of the request.
+options | [RequestInformation](#requestinformation) | An HashMap with the options of the request.
+
+## RequestInformation
+It encapsulates an HashMap<String, String> just for better comprehension.
+
+### Methods 
+### getMap
+```java
+HashMap<String, String> getMap();
+```
+```csharp
+Dictionary<String, String> getMap();
+```
+
+Obtains the HashMap encapsulated.
 
 ## Create Request
 ### Parameters
@@ -16,22 +60,22 @@ options.Add("Amount", "10.4");
 
 Request request = RequestFactory.getInstance().createRequest(SettlementYpe.SALE, options);
 ```
-In order to create a request there's a factory for this purpose.
+In order to create a request there's a [factory](#requestfactory) for this purpose.
 
 Parameter| Type | Description
 ---------| ---- | -----------
 type | [RequestType](#requesttype) | The type of the request.
-options | HashMap<String,String> | An HashMap with the options of the request.
+options | [RequestInformation](#requestinformation) | An HashMap with the options of the request.
 
 
 <aside class="notice">
-Depending on the type, the request might have some mandatory options.
+Depending on the [type](#requesttype), the request might have some mandatory options.
 </aside>
 
 ## RequestType
-There is a "main type" which is the category of the type. The subtype is action of the request.
+There is a "Main Type" which is the category of the type. The “Type” is action of the request.
 
-This are the type of that Integra API has:
+This are the type of that RequestType has:
 
 Main Type | Type | Description
 ------------| ---------- | -------
@@ -64,7 +108,8 @@ Other | SHIFT_CLOSE | Close the reconciliation period.
 Other | SHIFT_CLOSE_OPEN | Close then open the reconciliation period.
 
 ## Options
-Options is information that is on a request or a response.  
+Options is information that is on a request or a response. This information is use to put and 
+receive data that will be sent (request) or received (response) from the terminal.
 The options that can be added to requests are:  
 **AN** - Alpha Numeric  
 **A** - Alpha  

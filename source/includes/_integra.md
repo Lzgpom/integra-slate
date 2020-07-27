@@ -74,3 +74,39 @@ This interface contains a method to be called back on when a response to the req
 Parameter| Type | Description
 ---------| ---- | -----------
 response | [Response](#response) | The response received.
+
+## Response
+This contains the information about a response to a certain request.
+
+### Methods
+```java
+String getValue(String key);
+```
+```csharp
+string getValue(string key);
+```
+
+Obtains a certain value for a option given its key.
+
+Parameter| Type | Description
+---------| ---- | -----------
+key | String | The key string of the option to look for.
+
+## StatusUpdate
+This contains the information of a status update.
+
+### Methods
+```java
+String getValue(String key);
+```
+```csharp
+string getValue(string key);
+```
+
+Obtains a certain value for a option given its key.
+
+Parameter| Type | Description
+---------| ---- | -----------
+key | String | The key string of the option to look for.
+
+
