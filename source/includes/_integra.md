@@ -80,33 +80,25 @@ This contains the information about a response to a certain request.
 
 ### Methods
 ```java
-String getValue(String key);
+Map<String, String> getOption();
 ```
 ```csharp
-string getValue(string key);
+IDictionary<string, string> getOption();
 ```
 
-Obtains a certain value for a option given its key.
-
-Parameter| Type | Description
----------| ---- | -----------
-key | String | The key string of the option to look for.
+Returns the map with the options of the response. 
 
 ## StatusUpdate
 This contains the information of a status update.
 
 ### Methods
 ```java
-String getValue(String key);
+Map<String, String> getOption();
 ```
 ```csharp
-string getValue(string key);
+IDictionary<string, string> getOption();
 ```
 
-Obtains a certain value for a option given its key.
-
-Parameter| Type | Description
----------| ---- | -----------
-key | String | The key string of the option to look for.
+Returns the map with the options of the status update. 
 
 

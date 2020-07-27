@@ -1,111 +1,52 @@
 # Request
 The POS and the terminal communicate by requests in the 3cXML protocol, 3cXML abbreviated, 3cXMLPay@Table and 3cXMLPay@Table abbreviated. 
-A request is made up by its [type](#requesttype)  and options.
-
-## RequestFactory
-This allows for the creation of requests more easily.
-
-### Methods
-### getInstance
-```java
-static RequestFactory getInstance()
-```
-```csharp
-static RequestFactory getInstance()
-```
-
-Obtains an instance of the request factory.
-
-### createRequest
-
-```java
-Request createRequest(RequestType type, HashMap<String, String> options)
-```
-```csharp
-Request CreateRequest(RequestType type, Dictionary<String, String> options)
-```
-
-Creates a Request given its types and options.
-
-Parameter| Type | Description
----------| ---- | -----------
-type | [RequestType](#requesttype) | The type of the request.
-options | [RequestInformation](#requestinformation) | An HashMap with the options of the request.
-
-## RequestInformation
-It encapsulates an HashMap<String, String> just for better comprehension.
-
-### Methods 
-### getMap
-```java
-HashMap<String, String> getMap();
-```
-```csharp
-Dictionary<String, String> getMap();
-```
-
-Obtains the HashMap encapsulated.
+A request is made up by its options.
 
 ## Create Request
-### Parameters
+In order to create a request, it is necessary to create an instance of the request type desired. For example, to create a sale 
+request, it is created an instance of SaleRequest with the options needed. On the right it is exemplified.
+
 ```java
 HashMap<String, String> options = new HashMap<>();
-options.put("Amount", "10.4");
-
-Request request = RequestFactory.getInstance().createRequest(SettlementYpe.SALE, options);
+options.put("Amount", "20");
+options.put("RequesterTransRefNum", "20200407-000");
+Request request = new SaleRequest(options);
 ```
+
 ```csharp
-Dictionary<string, string> options = new Dictionary<string, string>();
-options.Add("Amount", "10.4");
-
-Request request = RequestFactory.getInstance().createRequest(SettlementYpe.SALE, options);
+Dictionary<string, string> options = new Dictionary<string,string>();
+options.Add("Amount", "20");
+options.Add("RequesterTransRefNum", "20200407-000");
+Request request = new SaleRequest(options);
 ```
-In order to create a request there's a [factory](#requestfactory) for this purpose.
-
-Parameter| Type | Description
----------| ---- | -----------
-type | [RequestType](#requesttype) | The type of the request.
-options | [RequestInformation](#requestinformation) | An HashMap with the options of the request.
-
 
 <aside class="notice">
-Depending on the [type](#requesttype), the request might have some mandatory options.
+Depending on the type, the request might have some mandatory options.
 </aside>
 
-## RequestType
+## Types
 There is a "Main Type" which is the category of the type. The “Type” is action of the request.
-
-This are the type of that RequestType has:
 
 Main Type | Type | Description
 ------------| ---------- | -------
-Auth | PRE_AUTH | Performs an authorization for an amount not necessarily equal to the final transaction amount, using EMV terminal. Card (EMV) data read by terminal. Pin entry.
-Auth | TOP_UP | Additional or supplemental authorization, done after an initial one. The same requester transaction reference number or token has to be used than for the initial one. The actual total amount has to be provided in the request. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorization and the EMV data. This request might go for an online approval.
-Auth | PRE_AUTH_REVERSAL | Reversal of a previous PreAuth request. The same amount has to be used than for the PreAuth one. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorization and the EMV data. This request might go for an online approval, depending on the bank interface. 
-Auth | TOP_UP_REVERSAL | Reversal of a previous TopUp request. The amount and requester transaction reference number has to be the same than in the TopUp request. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorizationand the EMV data. Then it does a reversal, by using the authorization code received at that time. This request might go for an online approval, depending on the bank interface
-Settlement | SALE | Sale using EMV terminal. EMV data read by terminal. Pin entry.
-Settlement | REFUND | Refund using EMV terminal. EMV data read by terminal. Pin entry optional. 
-Settlement | COMPLETION | Terminal used for completion, e.g. to provide confirmation or printout. 
-Settlement | SALE_REVERSAL | Reversal of a sale. No PIN entry required. The requester transaction reference number has to be the same than in the Sale request.
-Settlement | REFUND_REVERSAL | Reversal of a refund. No PIN entry required. The requester transaction reference number has to be the same than in the Refund request.
-Settlement | COMPLETION_REVERSAL | Reversal of a completion. No PIN entry required. The requester transaction reference number has to be the same than in the Completion request.
-Card | CARD_CHECK | Validate the card data received in the request.
-Card | CARD_CHECK_VALIDATE | Validate the card read by an EMV terminal. Card might stay in the terminal after reading.
-Card | CARD_CHECK_REMOVE | Validate the card read by an EMV terminal. Card is removed from the terminal after reading. 
-Terminal Status | INFO | Can provide specific terminal information, such as diagnostic data, or initial receipt data.
-Terminal Control | TERMINAL_ACTIVATE | This request can be used to activate an EMV terminal. Activate will place the terminal in a "technical" operational stateso it can be used by the integrator to execute operations. This command is only required in case the integrator has formerly deactivated the terminal.
-Terminal Control | TERMINAL_DEACTIVATE | This request can be used to deactivate an EMV terminal. Deactivate will place the terminal into a "technical"non-operational stateso it can NOT be used by the integrator to execute operations, and deactivates the reader and pinpad. This command is only required in case the integrator explicitly wants to deactivate a terminal to be sure no operations can be done.
-Terminal Control | TERMINAL_LANGUAGE | This request can be used to change the language of the terminal.
-Terminal Control | TERMINAL_SLEEP | This request can be used to make terminal to sleep.
-Terminal Control | TERMINAL_PRINTER_AVAILABLE | This request can be used to set the printer to available.
-Terminal Control | TERMINAL_PRINTER_NOT_AVAILABLE | This request can be used to set the printer to nou available.
-Terminal Control | TERMINAL_INITIALIZE | This message can be send to initialize an EMV terminal with some parameters from the request, and to trigger a configuration and software download.
-Terminal Control | TERMINAL_SHIFT_REOPEN | This message is like the SHIFT_CLOSE_OPEN.
-Other | CANCEL | Cancel a message sent before. 
-Other | CHECK_STATUS | Status request. Returns if the application is operational or not.
-Other | SHIFT_OPEN | Open the reconciliation period. ShiftClose 
-Other | SHIFT_CLOSE | Close the reconciliation period. 
-Other | SHIFT_CLOSE_OPEN | Close then open the reconciliation period.
+Auth | PreAuth | Performs an authorization for an amount not necessarily equal to the final transaction amount, using EMV terminal. Card (EMV) data read by terminal. Pin entry.
+Auth | TopUp | Additional or supplemental authorization, done after an initial one. The same requester transaction reference number or token has to be used than for the initial one. The actual total amount has to be provided in the request. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorization and the EMV data. This request might go for an online approval.
+Auth | PreAuthReversal | Reversal of a previous PreAuth request. The same amount has to be used than for the PreAuth one. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorization and the EMV data. This request might go for an online approval, depending on the bank interface. 
+Auth | TopUpReversal | Reversal of a previous TopUp request. The amount and requester transaction reference number has to be the same than in the TopUp request. No EMV terminal used here. By using the transaction reference the Integraserver finds back the original authorizationand the EMV data. Then it does a reversal, by using the authorization code received at that time. This request might go for an online approval, depending on the bank interface
+Settlement | Sale | Sale using EMV terminal. EMV data read by terminal. Pin entry.
+Settlement | Refund | Refund using EMV terminal. EMV data read by terminal. Pin entry optional. 
+Settlement | Completion | Terminal used for completion, e.g. to provide confirmation or printout. 
+Settlement | SaleReversal | Reversal of a sale. No PIN entry required. The requester transaction reference number has to be the same than in the Sale request.
+Settlement | RefundReversal | Reversal of a refund. No PIN entry required. The requester transaction reference number has to be the same than in the Refund request.
+Settlement | CompletionReversal | Reversal of a completion. No PIN entry required. The requester transaction reference number has to be the same than in the Completion request.
+Card | CardCheck | Validate the card data received in the request.
+Card | CardCheckValidate | Validate the card read by an EMV terminal. Card might stay in the terminal after reading.
+Card | CardCheckRemove | Validate the card read by an EMV terminal. Card is removed from the terminal after reading. 
+Other | Cancel | Cancel a message sent before. 
+Other | CheckStatus | Status request. Returns if the application is operational or not.
+Other | ShiftOpen | Open the reconciliation period. ShiftClose 
+Other | ShiftClose | Close the reconciliation period. 
+Other | ShiftCloseOpen | Close then open the reconciliation period.
 
 ## Options
 Options is information that is on a request or a response. This information is use to put and 
@@ -145,24 +86,6 @@ The options that can be added to requests are:
   <option value="card_response">Card Check Validate Response</option>
   <option value="card_request">Card Check Remove Request</option>
   <option value="card_response">Card Check Remove Response</option>
-  <option value="terminal_control_request">Terminal Activate Request</option>
-  <option value="terminal_control_response">Terminal Activate Response</option>
-  <option value="terminal_control_request">Terminal Deactivate Request</option>
-  <option value="terminal_control_response">Terminal Deactivate Response</option>
-  <option value="terminal_control_request">Terminal Language Request</option>
-  <option value="terminal_control_response">Terminal Language Response</option>
-  <option value="terminal_control_request">Terminal Sleep Request</option>
-  <option value="terminal_control_response">Terminal Sleep Response</option>
-  <option value="terminal_control_request">Terminal Printer Available Request</option>
-  <option value="terminal_control_response">Terminal Printer Available Response</option>
-  <option value="terminal_control_request">Terminal Printer Not Available Request</option>
-  <option value="terminal_control_response">Terminal Printer Not Available Response</option>
-  <option value="terminal_control_request">Terminal Initialize Request</option>
-  <option value="terminal_control_response">Terminal Initialize Response</option>
-  <option value="terminal_control_request">Terminal Shift Reopen Request</option>
-  <option value="terminal_control_response">Terminal Shift Reopen Response</option>
-  <option value="terminal_status_request">Terminal Info Request</option>
-  <option value="terminal_status_response">Terminal Info Response</option>
   <option value="check_status_request">Check Status Request</option>
   <option value="check_status_response">Check Status Response</option>
   <option value="shift_open_request">Shift Open Request</option>
@@ -1808,174 +1731,6 @@ The options that can be added to requests are:
   <td>Optional</td>
   <td>N</td>
   <td>Token, instead of or in addition of card number.</td>
-  </tr>
-  </tbody>
-  </table>
-</div>
-
-<div id="terminal_control_request" class="request_option">
-  <table>
-  <thead>
-  <tr>
-  <th>Option</th>
-  <th>Optional/Mandatory</th>
-  <th>Type</th>
-  <th>Description</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-  <td>SequenceNumber</td>
-  <td>Mandatory</td>
-  <td>N</td>
-  <td>A unique number for the request. The same number should be sent back in the reply. This number has to be used to cancel this message with the cancel message.</td>
-  </tr>
-  <tr>
-  <td>RequesterTransRefNum</td>
-  <td>Mandatory</td>
-  <td>AN</td>
-  <td>This is a unique number related to the Eft transaction payment cycle. This number should be the same for all requests related to a same transaction. Like initial authorization (PreAuth), supplemental authorizations (TopUp) and finally the settlement. The same number is send back in the reply.</td>
-  </tr>
-  <tr>
-  <td>RequesterStationId</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>A reference to the requester’s station (PMS station, pay on foot parking terminal) making the request.</td>
-  </tr>
-  <tr>
-  <td>RequesterLocationId</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>A reference to the requester’s location making this request.</td>
-  </tr>
-  <tr>
-  <td>ValidationId</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>A credential identifier, to authenticate the requester. Provided by the integrator or 3C.</td>
-  </tr>
-  <tr>
-  <td>ValidationCode</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>A credential password to authenticate the requester. Provided by 3C.</td>
-  </tr>
-  <tr>
-  <td>EmvTerminalId</td>
-  <td>Mandatory</td>
-  <td>AN</td>
-  <td>Reference of EMV terminal used to get EMV card details</td>
-  </tr>
-  <tr>
-  <td>Data</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>Extra data passed in the request or back in the response. Usage depends on message status type.</td>
-  </tr>
-  <tr>
-  <td>AttendantId</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>For future use. An identification of the operator or waiter. To associate requests to specific attendant.</td>
-  </tr>
-  </tbody>
-  </table>
-</div>
-
-<div id="terminal_control_response" class="request_option">
-  <table>
-  <thead>
-  <tr>
-  <th>Option</th>
-  <th>Optional/Mandatory</th>
-  <th>Type</th>
-  <th>Description</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-  <td>SequenceNumber</td>
-  <td>Mandatory</td>
-  <td>N</td>
-  <td>A unique number for the request. The same number should be sent back in the reply. This number has to be used to cancel this message with the cancel message.</td>
-  </tr>
-  <tr>
-  <td>RequesterTransRefNum</td>
-  <td>Mandatory</td>
-  <td>AN</td>
-  <td>This is a unique number related to the Eft transaction payment cycle. This number should be the same for all requests related to a same transaction. Like initial authorization (PreAuth), supplemental authorizations (TopUp) and finally the settlement. The same number is send back in the reply.</td>
-  </tr>
-  <tr>
-  <td>RequesterStationId</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>A reference to the requester’s station (PMS station, pay on foot parking terminal) making the request.</td>
-  </tr>
-  <tr>
-  <td>RequesterLocationId</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>A reference to the requester’s location making this request.</td>
-  </tr>
-  <tr>
-  <td>ValidationId</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>A credential identifier, to authenticate the requester. Provided by the integrator or 3C.</td>
-  </tr>
-  <tr>
-  <td>ValidationCode</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>A credential password to authenticate the requester. Provided by 3C.</td>
-  </tr>
-  <tr>
-  <td>Result</td>
-  <td>Mandatory</td>
-  <td>A</td>
-  <td>Result of the operation. A (accepted), R (rejected), E (Warning), …</td>
-  </tr>
-  <tr>
-  <td>Message</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>Text message which can come from a remote authorization host or from the Integra application.</td>
-  </tr>
-  <tr>
-  <td>Data1</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>Data received.</td>
-  </tr>
-  <tr>
-  <td>Data2</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>More data received.</td>
-  </tr>
-  <tr>
-  <td>Data3</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>More data received.</td>
-  </tr>
-  <tr>
-  <td>PrintData1</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>Any additional text to be printed out on the transaction receipt. Or the full merchant receipt, depending on configuration.</td>
-  </tr>
-  <tr>
-  <td>PrintData2</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>Any additional text to be printed out on the transaction receipt. Or the full cardholder receipt, depending on configuration.</td>
-  </tr>
-  <tr>
-  <td>Mac</td>
-  <td>Optional</td>
-  <td>AN</td>
-  <td>Mac information.</td>
   </tr>
   </tbody>
   </table>

@@ -23,3 +23,5 @@ Welcome to Integra Api! The main goal for this api is to ease the communication 
 This communication will enable us to sending requests and receiving responses and status updates.
 It is available to both Java and .NET. This API is targeted to the POS developers who want to integrate with 
 3c payment equipment.  
+
+
