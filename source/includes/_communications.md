@@ -229,7 +229,7 @@ isDuplicateCheckEnabled | Boolean | If the duplicate check is enabled.
 maskNonAsciiChars | Boolean | If the non ascii chars are masked.
 synBytes | Integer | The number of syn bytes.
 
-## Others
+## Future implementation
 The are other datalinks:  
 **- DatalinkPayAtTable**  
 

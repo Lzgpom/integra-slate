@@ -3,7 +3,7 @@ The POS and the terminal communicate by requests in the 3cXML protocol, 3cXML ab
 A request is made up by its options.
 
 ## Create Request
-In order to create a request, it is necessary to create an instance of the request type desired. For example, to create a sale 
+In order to create a request, it is necessary to create an instance of the request type desired. Among others, to create a sale 
 request, it is created an instance of SaleRequest with the options needed. On the right it is exemplified.
 
 ```java
