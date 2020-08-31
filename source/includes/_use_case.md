@@ -16,7 +16,7 @@ integra.connect();
 
 HashMap<String, String> options = new HashMap<>();
 options.put(Request.AMOUNT, "12.1");
-Request saleRequest = ResquestFactory.getInstance().createRequest(SettlementType.SALE, options);
+Request saleRequest = new SaleRequest(options);
 
 IResponseHandler handler = new IResponseHandler() {
   @Override
@@ -37,7 +37,7 @@ integra.connect();
 
 Dictionary<string, string> options = new Dictionary<>();
 options.Add(Request.AMOUNT, "12.1");
-Request saleRequest = ResquestFactory.getInstance().CreateRequest(SettlementType.SALE, options);
+Request saleRequest = new SaleRequest(options);
 
 // The implementation isn't showed here
 IMessageHandler handler = new SimpleMessageHandler();

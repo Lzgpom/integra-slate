@@ -3,7 +3,7 @@ The POS and the terminal communicate by requests in the 3cXML protocol, 3cXML ab
 A request is made up by its options.
 
 ## Create Request
-In order to create a request, it is necessary to create an instance of the request type desired. Among others, to create a sale 
+In order to create a request, it is necessary to create an instance of the request type desired. For example, to create a sale 
 request, it is created an instance of SaleRequest with the options needed. On the right it is exemplified.
 
 ```java
@@ -200,7 +200,7 @@ The options that can be added to requests are:
   <td>Result</td>
   <td>Mandatory</td>
   <td>A</td>
-  <td>Result of the operation. A (accepted), R (rejected), E (Warning), …</td>
+  <td>Result of the operation. A (accepted), R (rejected), E (Warning), among others</td>
   </tr>
   <tr>
   <td>Message</td>
@@ -320,13 +320,13 @@ The options that can be added to requests are:
   <td>Result</td>
   <td>Mandatory</td>
   <td>A</td>
-  <td>Result of the operation. A (accepted), R (rejected), E (Warning), …</td>
+  <td>Result of the operation. A (accepted), R (rejected), E (Warning), among others</td>
   </tr>
   <tr>
   <td>ResultReason</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Indicates the reason of the result. XB (local bad card type), …</td>
+  <td>Indicates the reason of the result. XB (local bad card type), among others</td>
   </tr>
   <tr>
   <td>Status</td>
@@ -458,13 +458,13 @@ The options that can be added to requests are:
   <td>Result</td>
   <td>Mandatory</td>
   <td>A</td>
-  <td>Result of the operation. A (accepted), R (rejected), E (Warning), …</td>
+  <td>Result of the operation. A (accepted), R (rejected), E (Warning), among others</td>
   </tr>
   <tr>
   <td>ResultReason</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Indicates the reason of the result. XB (local bad card type), …</td>
+  <td>Indicates the reason of the result. XB (local bad card type), among others</td>
   </tr>
   <tr>
   <td>Status</td>
@@ -584,7 +584,7 @@ The options that can be added to requests are:
   <td>Result</td>
   <td>Mandatory</td>
   <td>A</td>
-  <td>Result of the operation. A (accepted), R (rejected), E (Warning), …</td>
+  <td>Result of the operation. A (accepted), R (rejected), E (Warning), among others</td>
   </tr>
   <tr>
   <td>Status</td>
@@ -776,13 +776,13 @@ The options that can be added to requests are:
   <td>Result</td>
   <td>Mandatory</td>
   <td>A</td>
-  <td>Result of the operation. A (accepted), R (rejected), E (Warning), …</td>
+  <td>Result of the operation. A (accepted), R (rejected), E (Warning), among others</td>
   </tr>
   <tr>
   <td>ResultReason</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Indicates the reason of the result. XB (local bad card type), …</td>
+  <td>Indicates the reason of the result. XB (local bad card type), among others</td>
   </tr>
   <tr>
   <td>CardNumber</td>
@@ -812,7 +812,7 @@ The options that can be added to requests are:
   <td>CardSchemeName</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Name of the card scheme like "Visa", "Mastercard", "Diners", …</td>
+  <td>Name of the card scheme like "Visa", "Mastercard", "Diners", among others</td>
   </tr>
   <tr>
   <td>CardFunctionId</td>
@@ -935,7 +935,7 @@ The options that can be added to requests are:
   <td>Currency</td>
   <td>Optional</td>
   <td>A</td>
-  <td>Currency of the request. 3 character ISO definition: EUR, USD, … In case no currency is provided, the local currency is used.</td>
+  <td>Currency of the request. 3 character ISO definition: EUR, USD, among others In case no currency is provided, the local currency is used.</td>
   </tr>
   <tr>
   <td>AmountTotal</td>
@@ -1202,13 +1202,13 @@ The options that can be added to requests are:
   <td>Result</td>
   <td>Mandatory</td>
   <td>A</td>
-  <td>Result of the operation. A (accepted), R (rejected), E (Warning), …</td>
+  <td>Result of the operation. A (accepted), R (rejected), E (Warning), among others</td>
   </tr>
   <tr>
   <td>ResultReason</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Indicates the reason of the result. XB (local bad card type), …</td>
+  <td>Indicates the reason of the result. XB (local bad card type), among others</td>
   </tr>
   <tr>
   <td>BankResultCode</td>
@@ -1274,25 +1274,25 @@ The options that can be added to requests are:
   <td>CardSchemeId</td>
   <td>Mandatory</td>
   <td>A</td>
-  <td>Contains the card scheme Id: VS, AX, MC, XX, … Might contain special 3C defined card schemes for certain cards.</td>
+  <td>Contains the card scheme Id: VS, AX, MC, XX, among others Might contain special 3C defined card schemes for certain cards.</td>
   </tr>
   <tr>
   <td>CardSchemeName</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Name of the card scheme like "Visa", "Mastercard", "Diners", …</td>
+  <td>Name of the card scheme like "Visa", "Mastercard", "Diners", among others</td>
   </tr>
   <tr>
   <td>CardSchemeLabel</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Label of the card scheme like "Visa", "Mastercard", "Diners", …</td>
+  <td>Label of the card scheme like "Visa", "Mastercard", "Diners", among others</td>
   </tr>
   <tr>
   <td>CardFunctionId</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Name of the card scheme like "Visa", "Mastercard", "Diners", …</td>
+  <td>Name of the card scheme like "Visa", "Mastercard", "Diners", among others</td>
   </tr>
   <tr>
   <td>CardFunctionName</td>
@@ -1304,13 +1304,13 @@ The options that can be added to requests are:
   <td>CardInvoiceCompanyId</td>
   <td>Mandatory</td>
   <td>A</td>
-  <td>3C reference of Invoice company (bank): CI, CE, …</td>
+  <td>3C reference of Invoice company (bank): CI, CE, among others</td>
   </tr>
   <tr>
   <td>CardInvoiceCompanyName</td>
   <td>Mandatory</td>
   <td>AN</td>
-  <td>Name of invoice company; Citicorp, Cekab, …</td>
+  <td>Name of invoice company; Citicorp, Cekab, among others</td>
   </tr>
   <tr>
   <td>Amount</td>
@@ -1787,13 +1787,13 @@ The options that can be added to requests are:
 <td>Result</td>
 <td>Mandatory</td>
 <td>A</td>
-<td>Result of the operation. A (accepted), R (rejected), E (Warning), …</td>
+<td>Result of the operation. A (accepted), R (rejected), E (Warning), among others</td>
 </tr>
 <tr>
 <td>ResultReason</td>
 <td>Mandatory</td>
 <td>AN</td>
-<td>Indicates the reason of the result. XB (local bad card type), …</td>
+<td>Indicates the reason of the result. XB (local bad card type), among others</td>
 </tr>
 <tr>
 <td>BankResultCode</td>
@@ -1859,25 +1859,25 @@ The options that can be added to requests are:
 <td>CardSchemeId</td>
 <td>Mandatory</td>
 <td>A</td>
-<td>Contains the card scheme Id: VS, AX, MC, XX, … Might contain special 3C defined card schemes for certain cards.</td>
+<td>Contains the card scheme Id: VS, AX, MC, XX, ... Might contain special 3C defined card schemes for certain cards.</td>
 </tr>
 <tr>
 <td>CardSchemeName</td>
 <td>Mandatory</td>
 <td>AN</td>
-<td>Name of the card scheme like "Visa", "Mastercard", "Diners", …</td>
+<td>Name of the card scheme like "Visa", "Mastercard", "Diners", among others</td>
 </tr>
 <tr>
 <td>CardSchemeLabel</td>
 <td>Mandatory</td>
 <td>AN</td>
-<td>Label of the card scheme like "Visa", "Mastercard", "Diners", …</td>
+<td>Label of the card scheme like "Visa", "Mastercard", "Diners", among others</td>
 </tr>
 <tr>
 <td>CardFunctionId</td>
 <td>Mandatory</td>
 <td>AN</td>
-<td>Name of the card scheme like "Visa", "Mastercard", "Diners", …</td>
+<td>Name of the card scheme like "Visa", "Mastercard", "Diners", among others</td>
 </tr>
 <tr>
 <td>CardFunctionName</td>
@@ -1889,13 +1889,13 @@ The options that can be added to requests are:
 <td>CardInvoiceCompanyId</td>
 <td>Mandatory</td>
 <td>A</td>
-<td>3C reference of Invoice company (bank): CI, CE, …</td>
+<td>3C reference of Invoice company (bank): CI, CE, among others</td>
 </tr>
 <tr>
 <td>CardInvoiceCompanyName</td>
 <td>Mandatory</td>
 <td>AN</td>
-<td>Name of invoice company; Citicorp, Cekab, …</td>
+<td>Name of invoice company; Citicorp, Cekab, among others</td>
 </tr>
 <tr>
 <td>Amount</td>
@@ -2192,7 +2192,7 @@ The options that can be added to requests are:
   <td>EmvTerminalMessage</td>
   <td>Optional</td>
   <td>A/M</td>
-  <td>A free message to be displayed on the terminal. Can contain for instance table number, guest reference, …</td>
+  <td>A free message to be displayed on the terminal. Can contain for instance table number, guest reference, among others</td>
   </tr>
   <tr>
   <td>InvoiceId</td>
@@ -2246,7 +2246,7 @@ The options that can be added to requests are:
   <td>Currency</td>
   <td>Optional</td>
   <td>A</td>
-  <td>Currency of the request. 3 character ISO definition: EUR, USD, … In case no currency is provided, the local currency is used.</td>
+  <td>Currency of the request. 3 character ISO definition: EUR, USD, among others In case no currency is provided, the local currency is used.</td>
   </tr>
   <tr>
   <td>AuthCodeInputMethod</td>
@@ -2270,7 +2270,7 @@ The options that can be added to requests are:
   <td>ResultReason</td>
   <td>Optional</td>
   <td>AN</td>
-  <td>Indicates the reason of the result. XB (local bad card type), …</td>
+  <td>Indicates the reason of the result. XB (local bad card type), among others</td>
   </tr>
   <tr>
   <td>TimeStamp</td>
